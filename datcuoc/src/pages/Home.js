@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { START_SCORE, MIN_BET, MAX_BET, TIME_PER_QUESTION, formatScore } from '../data';
 
-const Home = ({ playerName, setPlayerName }) => {
+const Home = ({ playerName, setPlayerName, history }) => {
   const navigate = useNavigate();
+  const best = history.reduce((b, h) => (!b || h.finalScore > b.finalScore ? h : b), null);
 
   const start = () => {
     setPlayerName(playerName.trim());
@@ -20,6 +21,7 @@ const Home = ({ playerName, setPlayerName }) => {
           <li>Còn dưới {MIN_BET} điểm là cháy túi, lượt chơi kết thúc.</li>
         </ul>
       </div>
+      {best && <p>{`Kỷ lục: ${formatScore(best.finalScore)} – ${best.name}`}</p>}
       <div className="row">
         <label>
           Tên người chơi{' '}

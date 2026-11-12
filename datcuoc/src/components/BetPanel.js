@@ -1,10 +1,11 @@
 import { formatScore } from '../data';
 import { headline } from '../utils';
 
-const BetPanel = ({ question, index, total, score, bet, setBet, error, onBet }) => (
+const BetPanel = ({ question, index, total, score, bet, setBet, error, previewing, onBet }) => (
   <div className="card">
     <p>{headline(question, index + 1, total)}</p>
     <p>Điểm hiện có: {formatScore(score)}</p>
+    {previewing && <p><strong>{question.question}</strong></p>}
     <div className="row">
       <label>
         Mức cược{' '}

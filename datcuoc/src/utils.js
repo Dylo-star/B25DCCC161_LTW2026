@@ -11,3 +11,12 @@ export const getResult = (score) => RESULTS.find((r) => score >= r.min) || RESUL
 
 export const headline = (q, k, total) =>
   `Câu ${k}/${total} · ${q.topic} · ${LEVELS[q.level]} (${formatMultiplier(MULTIPLIERS[q.level])})`;
+
+export const loadList = (key) => {
+  try {
+    const v = JSON.parse(localStorage.getItem(key));
+    return Array.isArray(v) ? v : [];
+  } catch (e) {
+    return [];
+  }
+};
